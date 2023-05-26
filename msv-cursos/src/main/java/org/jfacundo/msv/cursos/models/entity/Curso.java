@@ -3,6 +3,7 @@ package org.jfacundo.msv.cursos.models.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "cursos")
@@ -13,5 +14,6 @@ public class Curso {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nombre;
 }
