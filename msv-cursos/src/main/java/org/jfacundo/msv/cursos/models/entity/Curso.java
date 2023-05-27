@@ -15,5 +15,6 @@ public class Curso {
     private Long id;
 
     @NotBlank
+    @Column (unique = true)
     private String nombre;
 }

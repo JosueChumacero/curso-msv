@@ -23,6 +23,7 @@ public class Usuario {
 
     @Column (unique = true)
     @Email
+    @NotBlank
     private String correo;
 
     @Column

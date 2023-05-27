@@ -9,10 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class UsuarioController {
@@ -37,6 +34,9 @@ public class UsuarioController {
         if (result.hasErrors()){
             return getMapResponseEntity(result);
         }
+        if (service.existePorCorreo(usuario.getCorreo())){
+            return ResponseEntity.badRequest().body(Collections.singletonMap("mensaje","Ya existe un usuario con ese coreo electrónico"));
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(usuario));
     }
 
@@ -48,6 +48,9 @@ public class UsuarioController {
         Optional<Usuario> usuarioOptional = service.porId(id);
         if (usuarioOptional.isPresent()){
             Usuario usuarioBD = usuarioOptional.get();
+            if (!usuario.getCorreo().equalsIgnoreCase(usuarioBD.getCorreo()) && service.existePorCorreo(usuario.getCorreo())){
+                return ResponseEntity.badRequest().body(Collections.singletonMap("mensaje","Ya existe un usuario con ese coreo electrónico"));
+            }
             usuarioBD.setCorreo(usuario.getCorreo());
             usuarioBD.setNombre(usuario.getNombre());
             usuarioBD.setPassword(usuario.getPassword());
