@@ -78,7 +78,7 @@ public class CursoServiceImpl implements CursoSercive{
 
     @Override
     @Transactional
-    public Optional<Usuario> eliminarUsuari(Usuario usuario, Long cursoId) {
+    public Optional<Usuario> eliminarUsuario(Usuario usuario, Long cursoId) {
         Optional<Curso> optionalCurso = repository.findById(cursoId);
         if (optionalCurso.isPresent()){
             Usuario usuarioMsv = usuarioClienteRest.detalle(usuario.getId());

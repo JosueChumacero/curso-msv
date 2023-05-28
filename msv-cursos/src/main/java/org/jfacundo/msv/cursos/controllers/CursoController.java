@@ -63,7 +63,7 @@ public class CursoController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/asignar-usuario/{cursoId}")
+    @PutMapping("/asignar-usuario/{cursoId}")
     public ResponseEntity<?> asignarUsuario(@RequestBody Usuario usuario, @PathVariable Long cursoId) {
         try {
             Optional<Usuario> optionalUsuario = service.asignarUsuario(usuario, cursoId);
@@ -77,7 +77,7 @@ public class CursoController {
         }
     }
 
-    @PutMapping("/crear-usuario/{cursoId}")
+    @PostMapping("/crear-usuario/{cursoId}")
     public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario, @PathVariable Long cursoId) {
         try {
             Optional<Usuario> optionalUsuario = service.crearUsuario(usuario, cursoId);
@@ -94,7 +94,7 @@ public class CursoController {
     @DeleteMapping("/eliminar-usuario/{cursoId}")
     public ResponseEntity<?> eliminarUsuario(@RequestBody Usuario usuario, @PathVariable Long cursoId) {
         try {
-            Optional<Usuario> optionalUsuario = service.eliminarUsuari(usuario, cursoId);
+            Optional<Usuario> optionalUsuario = service.eliminarUsuario(usuario, cursoId);
             if (optionalUsuario.isPresent()) {
                 return ResponseEntity.ok().body(optionalUsuario.get());
             }
