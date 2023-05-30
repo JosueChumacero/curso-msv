@@ -70,7 +70,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/usuarios-por-ids")
-    public ResponseEntity<?> obtenerAlumnosPorCurso(@RequestParam List<Long> ids){
+    public ResponseEntity<?> obtenerUsuariosPorId(@RequestParam List<Long> ids){
         return ResponseEntity.ok().body(service.listarPorIds(ids));
     }
 

@@ -33,6 +33,21 @@ public class CursoServiceImpl implements CursoSercive{
     }
 
     @Override
+    public Optional<Curso> porIdConUsuarios(Long id) {
+        Optional<Curso> optionalCurso = repository.findById(id);
+        if (optionalCurso.isPresent()){
+            Curso curso = optionalCurso.get();
+            if (!curso.getCursoUsuarios().isEmpty()){
+                List<Long> listaIds = curso.getCursoUsuarios().stream().map(CursoUsuario::getUsuarioId).toList();
+                List<Usuario> usuarios = usuarioClienteRest.obtenerUsuariosPorId(listaIds);
+                curso.setUsuarios(usuarios);
+            }
+            return  Optional.of(curso);
+        }
+        return  Optional.empty();
+    }
+
+    @Override
     public Curso guardar(Curso curso) {
         return repository.save(curso);
     }
@@ -41,7 +56,6 @@ public class CursoServiceImpl implements CursoSercive{
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
-
     @Override
     @Transactional
     public Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId) {

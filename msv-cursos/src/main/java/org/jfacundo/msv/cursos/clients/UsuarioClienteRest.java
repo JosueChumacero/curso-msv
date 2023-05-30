@@ -4,12 +4,10 @@ import org.jfacundo.msv.cursos.models.Usuario;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @FeignClient(name = "msv-usuarios", url = "localhost:8001")
 public interface UsuarioClienteRest {
@@ -19,4 +17,7 @@ public interface UsuarioClienteRest {
 
     @PostMapping("/")
     Usuario  crear(@RequestBody Usuario usuario);
+
+    @GetMapping("/usuarios-por-ids")
+    List<Usuario> obtenerUsuariosPorId(@RequestParam Iterable<Long> ids);
 }
