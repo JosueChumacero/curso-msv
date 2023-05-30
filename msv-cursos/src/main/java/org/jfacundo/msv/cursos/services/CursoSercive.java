@@ -16,6 +16,7 @@ public interface CursoSercive {
     Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId);
     Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId);
     Optional<Usuario> eliminarUsuario(Usuario usuario, Long cursoId);
+    void eliminarCursoUsuarioPorId(Long id);
 
 
 }

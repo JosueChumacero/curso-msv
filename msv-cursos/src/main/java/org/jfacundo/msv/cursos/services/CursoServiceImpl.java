@@ -5,6 +5,7 @@ import org.jfacundo.msv.cursos.models.Usuario;
 import org.jfacundo.msv.cursos.models.entity.Curso;
 import org.jfacundo.msv.cursos.models.entity.CursoUsuario;
 import org.jfacundo.msv.cursos.repositories.CursoRepository;
+import org.jfacundo.msv.cursos.repositories.CursoUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class CursoServiceImpl implements CursoSercive{
 
     @Autowired
     private CursoRepository repository;
+    @Autowired
+    private CursoUsuarioRepository cursoUsuarioRepository;
 
     @Autowired
     private UsuarioClienteRest usuarioClienteRest;
@@ -105,5 +108,11 @@ public class CursoServiceImpl implements CursoSercive{
             return Optional.of(usuarioMsv);
         }
         return  Optional.empty();
+    }
+
+    @Override
+    @Transactional
+    public void eliminarCursoUsuarioPorId(Long id) {
+        cursoUsuarioRepository.deleteByUsuarioId(id);
     }
 }
