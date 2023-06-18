@@ -13,7 +13,7 @@
 	<name>msv-usuarios</name>
 	<description>Proyecto Microservicio Spring</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.7</spring-cloud.version>
 	</properties>
 	<dependencies>
