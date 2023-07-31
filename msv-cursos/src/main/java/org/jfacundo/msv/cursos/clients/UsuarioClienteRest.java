@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@FeignClient(name = "msv-usuarios", url = "msv-usuarios:8001")
+@FeignClient(name = "msv-usuarios", url = "${msv.usuarios.url}")
 public interface UsuarioClienteRest {
 
     @GetMapping("/{id}")
