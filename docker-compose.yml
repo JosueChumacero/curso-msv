@@ -28,9 +28,10 @@ services:
       - spring
   msv-usuarios:
     container_name: msv-usuarios
-    build:
-      context: ./
-      dockerfile: ./msv-usuarios/Dockerfile
+    image: josuechumacero/usuarios:latest
+#    build:
+#      context: ./
+#      dockerfile: ./msv-usuarios/Dockerfile
     ports:
       - "8001:8001"
     env_file: ./msv-usuarios/.env
@@ -41,9 +42,10 @@ services:
     restart: always
   msv-cursos:
     container_name: msv-cursos
-    build:
-      context: ./
-      dockerfile: ./msv-cursos/Dockerfile
+    image: josuechumacero/cursos:latest
+#    build:
+#      context: ./
+#      dockerfile: ./msv-cursos/Dockerfile
     ports:
       - "8002:8002"
     env_file: ./msv-cursos/.env
